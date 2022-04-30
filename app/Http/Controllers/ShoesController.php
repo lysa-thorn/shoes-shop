@@ -38,12 +38,21 @@ class ShoesController extends Controller
      */
     public function store(Request $request)
     {
-        $shoes = new Shoes();
-        $shoes->name = $request->name;
-        $shoes->price = $request->price;
-        $shoes->size = $request->size;
-        $shoes->description = $request->description;
-        return redirect('categories');  
+        $shoe = new Shoes();
+        $shoe->name = $request->name;
+        $shoe->category_id = $request->category;
+        $shoe->price = $request->price;
+        $shoe->size = $request->size;
+        $shoe->description = $request->description;
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move('images/', $filename);
+            $shoe->image = $filename;
+        }
+        $shoe->save();
+        return redirect('shoes');  
     }
 
     /**

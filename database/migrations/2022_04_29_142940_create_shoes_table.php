@@ -20,8 +20,13 @@ class CreateShoesTable extends Migration
             $table->string('price');
             $table->string('size');
             $table->string('description');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
-            
         });
     }
 
