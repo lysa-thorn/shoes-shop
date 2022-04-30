@@ -10,7 +10,7 @@
                 @foreach($categories as $category)
                 <li class="list-group-item">{{$category->name}}
                     <a href="{{route('categories.destroy', $category->id)}}" onclick="return confirm('Are you sure want to delete?')"><i class="material-icons float-right text-danger" >delete</i></a>
-                    <a href="{{route('categories.edit', $category->id)}}"><i class="material-icons text-secondary" >edit</i></a>
+                    <a href="{{route('categories.edit', $category->id)}}"><i class="material-icons text-secondary float-right" >edit</i></a>
                 </li>
                 @endforeach
             </ul>
