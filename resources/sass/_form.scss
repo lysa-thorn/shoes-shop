@@ -1,5 +1,9 @@
 a.main-btn.btn,
 input.main-btn.btn {
-  background: #281b5e;
+  background: $primary;
   color: white;
+}
+
+i.main-btn {
+    color: $primary;
 }
