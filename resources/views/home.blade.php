@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <a href="{{route('shoes.create')}}" class="btn float-right">Add New</a>
+            <a href="{{route('shoes.create')}}" class="main-btn btn float-right">Add New</a>
         </div>
         @foreach($shoes as $shoe)
         <div class="col-md-3">
