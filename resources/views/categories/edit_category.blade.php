@@ -14,7 +14,7 @@
                             <label for="name">Name</label>
                             <input type="text" value="{{$category->name}}" name="category" class="form-control">
                             <input type="submit" value="Update" class="btn main-btn mt-2">
-                            <a href="{{route('categories.index')}}" class="float-right btn mt-2">Cancel</a>
+                            <a href="{{route('categories.index')}}" class="float-right btn btn-danger mt-2">Cancel</a>
                         </div>
                     </form>
                 </div>
