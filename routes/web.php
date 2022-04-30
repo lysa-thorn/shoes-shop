@@ -22,3 +22,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard')->middleware('is_admin');
 Route::resource('/shoes', App\Http\Controllers\ShoesController::class);
+// Route::get('/home', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+Route::resource('/categories', \App\Http\Controllers\CategoryController::class);
+Route::get('/destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroyCategory'])->name('categories.destroy');
