@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Shoes;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ShoesController extends Controller
      */
     public function index()
     {
-        //
+        $shoes = Shoes::all();
+        return view('home', compact("shoes"));
     }
 
     /**
@@ -24,7 +26,8 @@ class ShoesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('shoes.create_shoes', compact('categories'));
     }
 
     /**
@@ -35,7 +38,12 @@ class ShoesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shoes = new Shoes();
+        $shoes->name = $request->name;
+        $shoes->price = $request->price;
+        $shoes->size = $request->size;
+        $shoes->description = $request->description;
+        return redirect('categories');  
     }
 
     /**

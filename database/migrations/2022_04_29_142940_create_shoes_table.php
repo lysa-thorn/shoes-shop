@@ -15,12 +15,13 @@ class CreateShoesTable extends Migration
     {
         Schema::create('shoes', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
             $table->string('name');
             $table->string('price');
             $table->string('size');
             $table->string('description');
             $table->timestamps();
-
+            
         });
     }
 
