@@ -13,7 +13,7 @@
                             <label for="name">Category</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
-                        <a href="{{route('categories.index')}}" class="float-right btn-danger">Cancel</a>
+                        <a href="{{route('categories.index')}}" class="float-right btn btn-danger">Cancel</a>
                         <input type="submit"  value="Save" class="main-btn btn">
                 </div>
             </div>
