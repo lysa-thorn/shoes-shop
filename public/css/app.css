@@ -11306,12 +11306,12 @@ nav.navbar {
   width: 100%;
 }
 
-.py-4 {
-  padding-top: 0 !important;
-}
-
 .carousel-caption {
   bottom: 12rem;
+}
+
+main.py-4 {
+  padding-top: 0 !important;
 }
 
 a.main-btn.btn,
@@ -11322,4 +11322,14 @@ input.main-btn.btn {
 
 i.main-btn {
   color: #281b5e;
+}
+
+.card-header.shoe-thumb-card {
+  max-height: 210px;
+  max-width: 100%;
+}
+
+img.shoe-thumb {
+  height: 190px;
+  width: 100%;
 }
