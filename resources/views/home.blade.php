@@ -34,7 +34,7 @@
 </div>
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-12">
             <a href="{{route('shoes.create')}}" class="main-btn btn float-right">Add New</a>
         </div>
@@ -42,12 +42,12 @@
         <div class="col-md-3">
             <ul class="list-group mt-5">
                 <div class="card">
-                    <div class="card-header">image</div>
-                    <div class="card-body">
-                        <h2>{{$shoe->name}}</h2>
-                        <p><b>ID: </b>{{$shoe->id}}</p>
-                        <p><b>Price: </b>{{$shoe->price}}</p>
-                        <p><b>Size: </b>{{$shoe->size}}</p>
+                    <div class="card-header shoe-thumb-card">
+                        <img class="shoe-thumb" src="{{asset('images/'.$shoe->image)}}">
+                    </div>
+                    <div class="card-body shoe-info">
+                        <h5 class="shoe-name">{{$shoe->name}}</h5>
+                        <p><b>{{$shoe->price}}$</b></p>
                         <a href="#" class="main-btn btn float-right">More</a>
                     </div>
                 </div>

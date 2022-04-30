@@ -5,13 +5,26 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header"><h4>Shoes</h4></div>
+                <div class="card-header">
+                    <h4>Shoes</h4>
+                </div>
                 <div class="card-body">
-                    <form action="" method>
+                    <form action="{{route('shoes.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="categories">Categories</label>
+                            <select name="category" id="" class="form-control">
+                                @foreach ($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="number" name="price" class="form-control" required>
@@ -26,9 +39,9 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="" cols="61" rows="2"></textarea>
+                            <textarea name="description" class="form-control" id="" cols="61" rows="2"></textarea>
                         </div>
-                        <a href="#" class="main-btn btn ">Save</a>
+                        <input type="submit" class="btn main-btn" value="Save">
                         <a href="{{route('home')}}" class="btn btn-danger float-right">Cancel</a>
                     </form>
                 </div>
