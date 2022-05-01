@@ -20,10 +20,10 @@
 
                             <div class="form-group col-md-6">
                                 <label for="categories">Categories</label>
-                                <select class="form-control" name="categoryid" required>
-                                    <option value="" disabled selected></option>
+                                <select class="form-control" name="category" required>
+                                    <option value="" disabled>--</option>
                                     @foreach($categories as $category)
-                                    <option <?php if ($category->id == $category->category_id) { ?> selected="selected" <?php } ?> value="{{$category->id}}" required>{{$category->name}}</option>
+                                    <option <?php if ($category->id == $shoe->category_id) { ?> selected="selected" <?php } ?> value="{{$category->id}}" required>{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
