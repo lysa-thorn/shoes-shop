@@ -20,6 +20,7 @@
                             <div class="form-group col-md-6">
                                 <label for="categories">Categories</label>
                                 <select name="category" id="" class="form-control">
+                                    <option value="" disabled selected>--</option>
                                     @foreach ($categories as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
