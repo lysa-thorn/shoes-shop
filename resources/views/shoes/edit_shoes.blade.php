@@ -12,27 +12,31 @@
                     <form action="{{route('shoes.update', $shoe->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" value="{{$shoe->name}}" class="form-control" required>
-                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" value="{{$shoe->name}}" class="form-control" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="categories">Categories</label>
-                            <select name="category" id="" class="form-control">
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="form-group col-md-6">
+                                <label for="categories">Categories</label>
+                                <select class="form-control" name="categoryid" required>
+                                    <option value="" disabled selected></option>
+                                    @foreach($categories as $category)
+                                    <option <?php if ($category->id == $category->category_id) { ?> selected="selected" <?php } ?> value="{{$category->id}}" required>{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="price">Price</label>
-                            <input type="number" name="price" value="{{$shoe->price}}" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="size">Size</label>
-                            <input type="number" name="size" value="{{$shoe->size}}" class="form-control" required>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="price">Price</label>
+                                <input type="number" name="price" value="{{$shoe->price}}" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="size">Size</label>
+                                <input type="number" name="size" value="{{$shoe->size}}" class="form-control" required>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="size">Image</label>
