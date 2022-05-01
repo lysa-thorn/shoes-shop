@@ -64,7 +64,7 @@ class ShoesController extends Controller
     public function show($id)
     {
         $shoe = Shoes::find($id);
-        return view('shoes.create_shoes', compact('shoe'));
+        return view('shoes.show_shoes', compact('shoe'));
     }
 
     /**
