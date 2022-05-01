@@ -54,7 +54,7 @@ class ShoesController extends Controller
             $shoe->image = $filename;
         }
         $shoe->save();
-        return redirect('shoes');  
+        return redirect('shoes');
     }
 
     /**
@@ -103,11 +103,11 @@ class ShoesController extends Controller
             $filename = time() . "." . $extension;
             $file->move('images/', $filename);
             $shoe->image = $filename;
-        }else{
-            $shoe->image =  $shoe->image;  
+        } else {
+            $shoe->image =  $shoe->image;
         }
         $shoe->save();
-        return redirect('shoes'); 
+        return redirect('shoes');
     }
 
     /**
@@ -118,28 +118,33 @@ class ShoesController extends Controller
      */
     public function destroy($id)
     {
-       
     }
 
-    public function destroyShoe($id) 
+    public function destroyShoe($id)
     {
         $shoe = Shoes::find($id);
         $shoe->delete();
         return redirect('shoes');
     }
-    public function addToCart(Request $request) 
+
+    public function viewCart($userid)
+    {
+        $card = DB::select(DB::raw("SELECT * FROM order_item WHERE user_id = '$userid'"));
+        return view('shoes.add_cart');
+    }
+
+    public function addToCart(Request $request)
     {
         if (!Auth::user()) {
             return redirect('login');
-        }else {
+        } else {
             $user_id = Auth::user()->id;
             $shoe_id = $request->shoe_id;
             $quantity = $request->quantity;
             $total_price = $quantity * $request->price;
-            $order_item = DB::select( DB::raw("INSERT INTO order_item (user_id, shoes_id, quantity, total_price) VALUES($user_id, $shoe_id, $quantity, $total_price)"));
-
+            DB::select(DB::raw("INSERT INTO order_item (user_id, shoes_id, quantity, total_price) VALUES($user_id, $shoe_id, $quantity, $total_price)"));
         }
-  
+
         return redirect('shoes');
     }
 }

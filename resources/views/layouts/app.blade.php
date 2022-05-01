@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -31,7 +31,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    
+
 </head>
 
 <body>
@@ -57,6 +57,9 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shoes.index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @endif
@@ -71,8 +74,15 @@
                             <a class="nav-link" href="{{ route('shoes.index') }}">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shoes.card', Auth::user()->id)}}">Cart</a>
+                        </li>
+                        @if (Auth::user())
+                        @if (Auth::user()->is_admin == 1)
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
                         </li>
+                        @endif
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
