@@ -12,10 +12,15 @@
             <label for="size"> <b> Price : {{$shoe->price}}$</b> </label><br>
             <label for="size"> <b>Size : {{$shoe->size}}$</b></label>
             <p>{{$shoe->description}}$</p>
-            <form action="" method="POST">
-                <input type="submit" class="main-btn btn" value="Add to card">
+            <form action="{{route('shoes.addToCart')}}" method="POST">
+                @csrf
+                <input type="hidden" name="shoe_id" value="{{$shoe->id}}">
+                <input type="hidden" name="price" value="{{$shoe->price}}">
+                <label for="quantity">Quantity</label>
+                <input type="number"  name="quantity" value="1" min="1" class="form-control col-4" required><br>
+                <input type="submit" class="main-btn btn" value="Add to cart">
             </form>
         </div>
-    </div> 
+    </div>
 </div>
 @endsection

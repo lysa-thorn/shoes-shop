@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Shoes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ShoesController extends Controller
 {
@@ -123,6 +125,21 @@ class ShoesController extends Controller
     {
         $shoe = Shoes::find($id);
         $shoe->delete();
+        return redirect('shoes');
+    }
+    public function addToCart(Request $request) 
+    {
+        if (!Auth::user()) {
+            return redirect('login');
+        }else {
+            $user_id = Auth::user()->id;
+            $shoe_id = $request->shoe_id;
+            $quantity = $request->quantity;
+            $total_price = $quantity * $request->price;
+            $order_item = DB::select( DB::raw("INSERT INTO order_item (user_id, shoes_id, quantity, total_price) VALUES($user_id, $shoe_id, $quantity, $total_price)"));
+
+        }
+  
         return redirect('shoes');
     }
 }
