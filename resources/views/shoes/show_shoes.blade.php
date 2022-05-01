@@ -13,7 +13,7 @@
             <label for="size"> <b>Size : {{$shoe->size}}$</b></label>
             <p>{{$shoe->description}}$</p>
             <form action="" method="POST">
-                <button type="submit" class="main-btn btn">Add to card</button>
+                <input type="submit" class="main-btn btn" value="Add to card">
             </form>
         </div>
     </div> 
