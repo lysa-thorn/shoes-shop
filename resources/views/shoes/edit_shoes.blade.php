@@ -46,7 +46,7 @@
                             <label for="description">Description</label>
                             <textarea name="description" class="form-control" id="" cols="61" rows="2">{{$shoe->description}}</textarea>
                         </div>
-                        <input type="submit" class="btn main-btn" value="Save">
+                        <input type="submit" class="btn main-btn" value="Update">
                         <a href="{{route('home')}}" class="btn btn-danger float-right">Cancel</a>
                     </form>
                 </div>
