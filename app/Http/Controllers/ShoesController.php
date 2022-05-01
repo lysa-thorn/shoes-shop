@@ -61,9 +61,10 @@ class ShoesController extends Controller
      * @param  \App\Models\Shoes  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function show(Shoes $shoes)
+    public function show($id)
     {
-        //
+        $shoe = Shoes::find($id);
+        return view('shoes.create_shoes', compact('shoe'));
     }
 
     /**
@@ -72,9 +73,11 @@ class ShoesController extends Controller
      * @param  \App\Models\Shoes  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shoes $shoes)
+    public function edit($id)
     {
-        //
+        $shoe = Shoes::find($id);
+        $categories = Category::all();
+        return view('shoes.edit_shoes', compact('categories', 'shoe'));
     }
 
     /**
@@ -84,9 +87,25 @@ class ShoesController extends Controller
      * @param  \App\Models\Shoes  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shoes $shoes)
+    public function update(Request $request, $id)
     {
-        //
+        $shoe = Shoes::find($id);
+        $shoe->name = $request->name;
+        $shoe->category_id = $request->category;
+        $shoe->price = $request->price;
+        $shoe->size = $request->size;
+        $shoe->description = $request->description;
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move('images/', $filename);
+            $shoe->image = $filename;
+        }else{
+            $shoe->image =  $shoe->image;  
+        }
+        $shoe->save();
+        return redirect('shoes'); 
     }
 
     /**
@@ -95,8 +114,15 @@ class ShoesController extends Controller
      * @param  \App\Models\Shoes  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shoes $shoes)
+    public function destroy($id)
     {
-        //
+       
+    }
+
+    public function destroyShoe($id) 
+    {
+        $shoe = Shoes::find($id);
+        $shoe->delete();
+        return redirect('shoes');
     }
 }
