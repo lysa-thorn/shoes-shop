@@ -11329,6 +11329,10 @@ i.main-btn {
   max-width: 100%;
 }
 
+i.material-icons.main-btn {
+  cursor: pointer;
+}
+
 img.shoe-thumb {
   height: 190px;
   width: 100%;
