@@ -36,7 +36,11 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
+            @if (Auth::user())
+            @if (Auth::user()->is_admin == 1)
             <a href="{{route('shoes.create')}}" class="main-btn btn float-right">Add New</a>
+            @endif
+            @endif
         </div>
         @foreach($shoes as $shoe)
         <div class="col-md-3">
@@ -50,7 +54,8 @@
 
                             <h5 class="shoe-name">{{$shoe->name}}</h5>
                             <p class="shoe-price"><b>{{$shoe->price}}$</b></p>
-
+                            @if (Auth::user())
+                            @if (Auth::user()->is_admin == 1)
                             <div class="dropdown show float-right">
                                 <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons main-btn">more_vert</i>
@@ -61,6 +66,8 @@
                                     <a class="dropdown-item" href="{{route('shoes.destroy', $shoe->id)}}" onclick="return confirm('Are you sure want to delete?')">Delete</a>
                                 </div>
                             </div>
+                            @endif
+                            @endif
                         </div>
                     </div>
                 </a>

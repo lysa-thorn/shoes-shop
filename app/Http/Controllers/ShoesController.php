@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Shoes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShoesController extends Controller
 {
@@ -124,5 +125,17 @@ class ShoesController extends Controller
         $shoe = Shoes::find($id);
         $shoe->delete();
         return redirect('shoes');
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Shoes  $shoes
+     * @return \Illuminate\Http\Response
+     */
+    public function viewCart($userid)
+    {
+        $card = DB::select( DB::raw("SELECT * FROM order_item WHERE user_id = '$userid'") );
+        return view('shoes.add_cart');
     }
 }
