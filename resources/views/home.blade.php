@@ -41,24 +41,29 @@
         @foreach($shoes as $shoe)
         <div class="col-md-3">
             <ul class="list-group mt-5">
-                <div class="card">
-                    <div class="card-header shoe-thumb-card">
-                    <div class="dropdown  float-right">
-                    <a href="#" id="dropdownMenuButton" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons main-btn">more_vert</i></a>
-                
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a href="{{route('shoes.edit', $shoe->id)}}" class="dropdown-item" href="#">Update</a>
-                        <a class="dropdown-item" href="{{route('shoes.destroy', $shoe->id)}}"  onclick="return confirm('Are you sure want to delete?')">Delete</a>
+                <a href="{{route('shoes.show', $shoe->id)}}" class="shoe-detail">
+                    <div class="card">
+                        <div class="card-header shoe-thumb-card">
+                            <img class="shoe-thumb" src="{{asset('images/'.$shoe->image)}}">
+                        </div>
+                        <div class="card-body shoe-info">
+
+                            <h5 class="shoe-name">{{$shoe->name}}</h5>
+                            <p class="shoe-price"><b>{{$shoe->price}}$</b></p>
+
+                            <div class="dropdown show float-right">
+                                <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons main-btn">more_vert</i>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a href="{{route('shoes.edit', $shoe->id)}}" class="dropdown-item">Update</a>
+                                    <a class="dropdown-item" href="{{route('shoes.destroy', $shoe->id)}}" onclick="return confirm('Are you sure want to delete?')">Delete</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                      
-                        <img class="shoe-thumb" src="{{asset('images/'.$shoe->image)}}">
-                    </div>
-                    <div class="card-body shoe-info">
-                        <h5 class="shoe-name">{{$shoe->name}}</h5>
-                        <p><b>{{$shoe->price}}$</b></p>
-                    </div>
-                </div>
+                </a>
             </ul>
         </div>
         @endforeach
