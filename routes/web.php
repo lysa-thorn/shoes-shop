@@ -28,3 +28,6 @@ Route::resource('/categories', \App\Http\Controllers\CategoryController::class);
 Route::get('/destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroyCategory'])->name('categories.destroy');
 Route::post('/addToCart', [\App\Http\Controllers\ShoesController::class, 'addToCart'])->name('shoes.addToCart');
 Route::get('/card/{id}', [\App\Http\Controllers\ShoesController::class, 'viewCart'])->name('shoes.card');
+
+Route::get('stripe', [\App\Http\Controllers\StripePaymentController::class, 'show'])->name('stripe');
+Route::post('stripe', [\App\Http\Controllers\StripePaymentController::class, 'stripePost'])->name('stripe.post');

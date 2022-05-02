@@ -74,7 +74,7 @@
                             <a class="nav-link" href="{{ route('shoes.index') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('shoes.card', Auth::user()->id)}}">Cart</a>
+                            <a class="nav-link" href="{{ route('shoes.card', Auth::user()->id)}}">Cart</p></a>
                         </li>
                         @if (Auth::user())
                         @if (Auth::user()->is_admin == 1)
