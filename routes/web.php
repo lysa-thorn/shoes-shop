@@ -26,5 +26,8 @@ Route::resource('/shoes', App\Http\Controllers\ShoesController::class);
 Route::get('/destroyShoe/{id}', [\App\Http\Controllers\ShoesController::class, 'destroyShoe'])->name('shoes.destroy');
 Route::resource('/categories', \App\Http\Controllers\CategoryController::class);
 Route::get('/destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroyCategory'])->name('categories.destroy');
-Route::post('/addToCart', [\App\Http\Controllers\ShoesController::class, 'addToCart'])->name('shoes.addToCart');
-Route::get('/card/{id}', [\App\Http\Controllers\ShoesController::class, 'viewCart'])->name('shoes.card');
+
+Route::get('shoes/cart', [\App\Http\Controllers\ShoesController::class, 'showCart'])->name('cart');
+Route::get('add-to-cart/{id}', [\App\Http\Controllers\ShoesController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [\App\Http\Controllers\ShoesController::class, 'updateCard'])->name('update.cart');
+Route::delete('remove-from-cart', [\App\Http\Controllers\ShoesController::class, 'remove'])->name('remove.from.cart');

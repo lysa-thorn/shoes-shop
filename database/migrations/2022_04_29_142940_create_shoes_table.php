@@ -17,9 +17,10 @@ class CreateShoesTable extends Migration
             $table->id();
             $table->string('image');
             $table->string('name');
-            $table->string('price');
+            $table->decimal('price', 6, 2);
             $table->string('size');
-            $table->string('description');
+            $table->integer('quantity')->default(0);
+            $table->text('description');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')

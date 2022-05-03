@@ -63,10 +63,9 @@ class ShoesController extends Controller
      * @param  \App\Models\Shoes  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $shoe = Shoes::find($id);
-        return view('shoes.show_shoes', compact('shoe'));
+        return view('shoes.cart');
     }
 
     /**
@@ -116,35 +115,74 @@ class ShoesController extends Controller
      * @param  \App\Models\Shoes  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-    }
 
-    public function destroyShoe($id)
-    {
+    public function destroyShoe($id){
         $shoe = Shoes::find($id);
         $shoe->delete();
         return redirect('shoes');
     }
 
-    public function viewCart($userid)
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function addToCart($id)
     {
-        $card = DB::select(DB::raw("SELECT * FROM order_item WHERE user_id = '$userid'"));
-        return view('shoes.add_cart');
-    }
-
-    public function addToCart(Request $request)
-    {
-        if (!Auth::user()) {
+       if (!Auth::user()) {
             return redirect('login');
         } else {
-            $user_id = Auth::user()->id;
-            $shoe_id = $request->shoe_id;
-            $quantity = $request->quantity;
-            $total_price = $quantity * $request->price;
-            DB::select(DB::raw("INSERT INTO order_item (user_id, shoes_id, quantity, total_price) VALUES($user_id, $shoe_id, $quantity, $total_price)"));
+        $shoe = Shoes::findOrFail($id);
+          
+        $cart = session()->get('cart', []);
+  
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $shoe->name,
+                "quantity" => 1,
+                "price" => $shoe->price,
+                "image" => $shoe->image
+            ];
         }
+          
+        session()->put('cart', $cart);
 
-        return redirect('shoes');
+        }
+        return redirect()->back()->with('success', 'Shoes added to cart successfully!');
+        
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function updateCard(Request $request)
+    {
+        if($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Shoes Cart successfully');
+        }
     }
 }
