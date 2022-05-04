@@ -49,7 +49,7 @@
         <tr>
             <td colspan="5" class="text-right">
                 <a href="{{ url('/') }}" class="btn btn-warning">Continue Shopping</a>
-                <button class="btn btn-success">Checkout</button>
+                <a href="{{ route('stripe') }}" type="button" class="btn btn-success">Checkout</a>
             </td>
         </tr>
     </tfoot>

@@ -62,3 +62,22 @@
 .cart-detail .count {
     color: #C2C2DC;
 }
+
+.panel-title {
+    display: inline;
+    font-weight: bold;
+}
+
+.display-table {
+    display: table;
+}
+
+.display-tr {
+    display: table-row;
+}
+
+.display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 61%;
+}

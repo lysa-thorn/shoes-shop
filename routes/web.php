@@ -31,3 +31,6 @@ Route::get('shoes/cart', [\App\Http\Controllers\ShoesController::class, 'showCar
 Route::get('add-to-cart/{id}', [\App\Http\Controllers\ShoesController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [\App\Http\Controllers\ShoesController::class, 'updateCard'])->name('update.cart');
 Route::delete('remove-from-cart', [\App\Http\Controllers\ShoesController::class, 'remove'])->name('remove.from.cart');
+
+Route::get('stripe', [\App\Http\Controllers\StripePaymentController::class, 'show'])->name('stripe');
+Route::post('stripe', [\App\Http\Controllers\StripePaymentController::class, 'stripePost'])->name('stripe.post');
