@@ -68,6 +68,11 @@
                             </div>
                             @endif
                             @endif
+                            <p class="btn-holder">
+                                <a href="{{ route('add.to.cart', $shoe->id) }}" class="btn btn-info text-center" role="button">
+                                    <i class="material-icons main-btn">add_shopping_cart</i>
+                                </a> 
+                            </p>
                         </div>
                     </div>
                 </a>
